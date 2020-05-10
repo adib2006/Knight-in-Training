@@ -1,0 +1,29 @@
+<html>
+    <head><title>My Game</title></head>
+
+    <body>
+        <div>
+            <h1><b>'Knight in Training'</b></h1>
+            <p>Description: Hello, knight-in-training! In this game, you get to choose how the story runs by saying what you will like to do. You must also keep track of your players data, including your name, title, level, and most importantly, your health. Meet you on your adventure!</p>
+            <h3><u>GAME CONTROLS:</u></h3>
+            <ul>
+                <li>Answers to the question: "What are you doing, traveler?: " = sleeping, training, eating breakfast, eating lunch, eating dinner, in trouble, under attack.</li>
+                <li>Answers to the question: "What is your name?: " = {insert name here}.</li>
+                <li>Answers to "What's your plan?: " = fight back, defend, run away.</li>
+                <li>Your player loses 10 health every round, so you must eat!</li>
+                <li>To level you, must train or receive it from 'defend' or 'fight back.'</li>
+                <li>Run away: Always successful, you don't lose any health.</li>
+                <li>Fight back: 49% chance of winning, 51% chance of losing. If you win, gain 7 levels. If you lose, lose 35 health points.</li>
+                <li>Defend: 75% chance of winning, 25% chance of failing. If you win, gain 2 levels. If you lose, lose 25 health points.</li>
+
+            </ul>
+                 <form action="{{ url_for('play') }}" class="form" method="post">
+                    {{ form.csrf_token }}
+                    {{ form.text(size=14) }}
+                    {{ form.submit }}
+                </form>
+        </div>
+    </body>
+
+
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>play</title>
+</head>
+<body>
+    <h1>Start game: 'Knight in Training'</h1>
+    <form action="{{ url_for('play') }}" class="form" method="post">
+        {{ form.csrf_token }}
+        {{ form.text(size=14) }}
+        {{ form.submit }}
+    </form>
+</body>
+</html>

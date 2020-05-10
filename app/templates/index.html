@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+  </head>
+
+  <body>
+	<div>
+      <h1 class="colorTitle">This is the index page</h1>
+      <h2 class="redTitle">Welcome to the website</h2>
+      <a href="{{ url_for('game') }}">Go to Game</a>
+    </div>
+  </body>
+</html>
