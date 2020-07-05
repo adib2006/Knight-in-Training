@@ -33,6 +33,7 @@ class Player:
 @app.route('/')
 @app.route('/index')
 def index():
+  session.clear()
   return render_template('index.html')
 
 @app.route('/game', methods = ["GET","POST"])
@@ -40,10 +41,18 @@ def game():
   form = ChoicesForm()
   if form.validate_on_submit():
     submitted_text = form.text.data
+
+    # DEBUGGING ONLY
+    # print("Is form validating???")
+    # print("Submitted:", submitted_text)
+
     # session is a dictionary
     if 'player' not in session:
       session['player'] = Player(submitted_text).toJSON()
-    redirect(url_for('play'))
+      print(session['player'])
+
+    # Only go to play page if the player has been created
+    return redirect(url_for('play')) # MUST use `return` keyword for redirect
   return render_template('game.html', form=form)
 
 
