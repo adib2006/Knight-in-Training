@@ -141,7 +141,9 @@ print(tuple)
 print(list)
 
 
+print("Immortality! Eternal life! And...")
 
+print("STAND POWER!")
 
 
 

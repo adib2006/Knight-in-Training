@@ -17,7 +17,7 @@
                 <li>Defend: 75% chance of winning, 25% chance of failing. If you win, gain 2 levels. If you lose, lose 25 health points.</li>
 
             </ul>
-                 <form action="{{ url_for('play') }}" class="form" method="post">
+                 <form action="{{ url_for('game') }}" class="form" method="post">
                     {{ form.csrf_token }}
                     {{ form.text(size=14) }}
                     {{ form.submit }}

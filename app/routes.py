@@ -35,18 +35,22 @@ class Player:
 def index():
   return render_template('index.html')
 
-@app.route('/game')
+@app.route('/game', methods = ["GET","POST"])
 def game():
   form = ChoicesForm()
   if form.validate_on_submit():
     submitted_text = form.text.data
-    session['player'] = "Adib" #Player(submitted_text).toJSON()
+    # session is a dictionary
+    if 'player' not in session:
+      session['player'] = Player(submitted_text).toJSON()
+    redirect(url_for('play'))
   return render_template('game.html', form=form)
 
 
 @app.route('/play', methods = ["GET","POST"])
 def play():
   player = session['player']
+  print(player)
   choices = ["sleeping", "training", "eating breakfast", "eating lunch", "eating dinner", "in trouble", "under attack"]
   print(choices)
   alive = True

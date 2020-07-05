@@ -1,67 +1,47 @@
-class Player:
-    def __init__(self, name):
-        self.level = 1
-        self.name = name
-        self.health = 110
-        self.title = "Rookie "
+import time
+global gold
+global apples
+apples = 0
+gold = 0
 
-    def __str__(self):
-        return "Level: " + str(self.level) + " Name: " + self.name + " Health: " + str(self.health) + " Title: " + self.title
-name = input("What is your name, traveler?: ")
-second_player = Player(name)
-print(second_player)
-
-choices = ["sleeping","training","eating breakfast","eating lunch","eating dinner","in trouble","under attack"]
-print(choices)
-alive = True
-while alive:
-    if second_player.level >= 25:
-        second_player.title = "General "
-    elif second_player.level >= 10:
-        second_player.title = "Master "
-
-    second_player.health = second_player.health - 10        # Because of daily hunger, you lose 10 health every round.
-
- print("Player level is:", second_player.level)
-    print("Player name is:", second_player.title + second_player.name)
-    print("Player's health: ", second_player.health)
+def start():
+    print ("Hello and welcome!")
+    name = input("What's your name:")
+    print ("Welcome, "+name+"!")
+    print ("The objective of this game is to collect apples.")
+    print ("After collecting the apples you sell them.")
+    choice = input("Do you want to play Y/N?")
+    if choice == "Y":
+        begin()
+    if choice == "N":
+        print ("Okay, bye...")
 
 
-
-    if second_player.health <= 0:
-        print("GAME OVER! Better luck next time!")
-        alive = False
-        break
-
-    command = input("What are you doing, traveler?: ")
-    if command == "sleeping":
-        print("Good night!")
-        second_player.level = second_player.level + 1
-    elif command == "training":
-        print("Good luck!")
-        second_player.level = second_player.level + 1
-    elif command == "eating breakfast" or command == "eating lunch" or command == "eating dinner":
-        print("Eat healthy!")
-        second_player.health = second_player.health + 25
-    elif command == "in trouble" or command == "under attack":
-        print("WATCH OUT!")
-        under_attack = True
-        while under_attack:
-        choice = input("What's your plan?: ")
-        random_float = random.random()
-print('run away', 'fight back', 'defend')
-            if choice == "run away":
-                print("You ran away, lost 0 health.")
-                under_attack = False
-            elif choice == "fight back":
-                if random_float <= 0.49:
-                    second_player.health = second_player.health - 35
-                    print('Ouch! You lost 35 health.')
-                else:
-                    second_player.level = second_player.level + 10
-                under_attack = False
-            elif choice == "defend":
-                if random_float <= 0.25:
-                    print('Ouch! You lost 25 health!')
-                    second_player.health = second_player.health - 25
-                else:
+def begin():
+    global apples
+    global gold
+    print ("Let's get started!")
+    if gold > 99:
+        print ("You've Won the game!")
+        play = input("Do you want to play again?")
+        if play =="Y":
+            begin()
+        if play =="N":
+            print ("Congrats again!")
+    pick = input("Do you want to pick an apple Y/N?")
+    if pick == "Y":
+        time.sleep(1)
+        print ("You pick an apple.")
+        apples=apples+1
+        print ("You currently have, ",apples," apples")
+        begin()
+    if pick == "N":
+        sell = input("Do you want to sell your apples Y/N?")
+        if sell == "Y":
+            print ("You currently have, ",apples," apples")
+            print ("You have sold your apples.")
+            gold=apples*10
+            apples=0
+            print ("Your gold is now:",gold)
+            begin()
+start()
