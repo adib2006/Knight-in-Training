@@ -6,10 +6,21 @@
 </head>
 <body>
     <h1>Start game: 'Knight in Training'</h1>
+    <h3>CHOICES:  sleeping, training, eating breakfast, eating lunch, eating dinner, in trouble, under attack</h3>
     <form action="{{ url_for('play') }}" class="form" method="post">
         {{ form.csrf_token }}
         {{ form.text(size=14) }}
         {{ form.submit }}
     </form>
+        <!-- Handle flash messages -->
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul>
+            {% for message in messages %}
+            <li><b>{{ message }}</b></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
 </body>
 </html>
